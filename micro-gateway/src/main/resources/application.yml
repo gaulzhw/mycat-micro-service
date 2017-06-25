@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: micro-gateway
+
+server:
+  port: 8081
+
+eureka:
+  instance:
+    hostname: micro-gateway
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka,http://eureka2:8001/eureka,http://eureka3:8001/eureka
+
+zuul:
+  ribbon-isolation-strategy: THREAD # SEMAPHORE THREAD
+  sensitive-headers:
+  ignored-headers:
+  ignored-services: '*'
+  routes:
+    user:
+      path: /account/**
+      serviceId: micro-account
+      stripPrefix: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

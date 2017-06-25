@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  eureka1:
+    image: micro-eureka:0.0.1-SNAPSHOT
+    hostname: eureka1
+    networks:
+      - eureka-net
+    ports:
+      - "8001:8001"
+    environment:
+      - spring.profiles.active=eureka1
+  eureka2:
+    image: micro-eureka:0.0.1-SNAPSHOT
+    hostname: eureka2
+    networks:
+      - eureka-net
+    ports:
+      - "8002:8001"
+    environment:
+      - spring.profiles.active=eureka2
+  eureka3:
+    image: micro-eureka:0.0.1-SNAPSHOT
+    hostname: eureka3
+    networks:
+      - eureka-net
+    ports:
+      - "8003:8001"
+    environment:
+      - spring.profiles.active=eureka3
+  gateway:
+    image: micro-gateway:0.0.1-SNAPSHOT
+    hostname: gateway
+    networks:
+      - eureka-net
+    ports:
+      - "80:80"
+    depends_on:
+      - "eureka1"
+      - "eureka2"
+      - "eureka3"
+  micro-account:
+    image: micro-account:0.0.1-SNAPSHOT
+    hostname: micro-account
+    networks:
+      - eureka-net
+    expose:
+      - "8021"
+    depends_on:
+      - "eureka1"
+      - "eureka2"
+      - "eureka3"
+
+networks:
+  eureka-net:
+    driver: bridge

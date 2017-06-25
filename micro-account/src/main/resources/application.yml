@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: micro-account
+
+server:
+  port: 8021
+  context-path: /account
+
+eureka:
+  instance:
+    hostname: micro-account
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka,http://eureka2:8001/eureka,http://eureka3:8001/eureka
