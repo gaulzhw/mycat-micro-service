@@ -1,12 +1,15 @@
 package com.mycat.micro.view.model;
 
+import java.io.Serializable;
+
 /**
  * Desc:
  *
  * @date: 25/06/2017
  * @author: gaozhiwen
  */
-public class Account {
+public class Account implements Serializable {
+    private static final long serialVersionUID = -229511409182036386L;
     private String name;
     private String password;
 
@@ -24,5 +27,12 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

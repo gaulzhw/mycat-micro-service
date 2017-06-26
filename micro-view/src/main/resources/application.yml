@@ -3,6 +3,12 @@ spring:
     name: micro-view
   thymeleaf:
     cache: false
+  session:
+    store-type: redis
+  redis:
+    host: localhost
+    port: 6379
+    #password:
 
 server:
   port: 8080
@@ -11,6 +17,9 @@ server:
 #    accesslog:
 #      enabled: true
 #    basedir: target/tomcat
+
+logging:
+  config: classpath:log4j2.xml
 
 eureka:
   instance:

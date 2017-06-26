@@ -1,6 +1,8 @@
 package com.mycat.micro.account.service;
 
+import com.mycat.micro.account.mapper.AccountMapper;
 import com.mycat.micro.account.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,10 +13,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AccountService {
+    @Autowired
+    private AccountMapper accountMapper;
+
     public Account login(String username, String password) {
-        Account account = new Account();
-        account.setName(username);
-        account.setPassword(password);
-        return account;
+        return accountMapper.getAccountByNameAndPwd(username, password);
     }
 }
