@@ -22,9 +22,13 @@ zuul:
   ignored-headers:
   ignored-services: '*'
   routes:
-    user:
+    account:
       path: /account/**
       serviceId: micro-account
+      stripPrefix: false
+    product:
+      path: /product/**
+      serviceId: micro-product
       stripPrefix: false
 
 hystrix:

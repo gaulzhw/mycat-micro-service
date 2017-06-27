@@ -10,6 +10,14 @@
 
 <body>
 <h1 class="text-center">Spring Cloud Demo</h1>
-<!--welcome <span th:text="${session.loginAccount.name}"></span>-->
+<h2 class="text-center">product</h2>
+<table>
+    <tr>
+        <td th:text="${product.id}">id</td>
+        <td th:text="${product.name}">name</td>
+        <td th:text="${product.price}">price</td>
+        <td th:text="${product.desc}">desc</td>
+    </tr>
+</table>
 </body>
 </html>

@@ -16,6 +16,8 @@
         <module>micro-gateway</module>
         <module>micro-account</module>
         <module>micro-view</module>
+        <module>micro-product</module>
+        <module>micro-shoppingcart</module>
     </modules>
     
     <parent>

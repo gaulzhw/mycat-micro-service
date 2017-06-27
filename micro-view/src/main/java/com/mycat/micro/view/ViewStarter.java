@@ -1,6 +1,5 @@
 package com.mycat.micro.view;
 
-import com.mycat.micro.view.interceptor.SecurityInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.SpringCloudApplication;
@@ -22,8 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class ViewStarter extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SecurityInterceptor()).excludePathPatterns("/", "/login").addPathPatterns("/**");
-        super.addInterceptors(registry);
+//        registry.addInterceptor(new SecurityInterceptor()).excludePathPatterns("/", "/login").addPathPatterns("/**");
+//        super.addInterceptors(registry);
     }
 
     public static void main(String[] args) {

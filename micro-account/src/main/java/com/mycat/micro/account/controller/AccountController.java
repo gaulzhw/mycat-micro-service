@@ -18,8 +18,7 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping("/login")
-    public Account login(String username, String password){
-        System.out.println("account login");
+    public Account login(String username, String password) {
         return accountService.login(username, password);
     }
 }
