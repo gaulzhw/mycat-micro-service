@@ -1,4 +1,4 @@
-package com.mycat.micro.view.constant;
+package com.mycat.micro.gateway.constant;
 
 /**
  * Desc:
@@ -6,6 +6,6 @@ package com.mycat.micro.view.constant;
  * @date: 25/06/2017
  * @author: gaozhiwen
  */
-public class ViewConstant {
+public class Constants {
     public static final String SESSION_KEY = "loginAccount";
 }

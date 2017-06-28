@@ -1,4 +1,4 @@
-package com.mycat.micro.view.config;
+package com.mycat.micro.gateway.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

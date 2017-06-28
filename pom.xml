@@ -11,15 +11,15 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>micro-eureka</module>
+        <module>micro-eureka-server</module>
         <module>micro-config-server</module>
         <module>micro-gateway</module>
         <module>micro-account</module>
         <module>micro-view</module>
         <module>micro-product</module>
-        <module>micro-shoppingcart</module>
+        <module>micro-cart</module>
     </modules>
-    
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

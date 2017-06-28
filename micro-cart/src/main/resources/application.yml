@@ -1,14 +1,14 @@
 spring:
   application:
-    name: micro-shoppingcart
+    name: micro-cart
   redis:
     host: localhost
     port: 6379
     #password:
 
 server:
-  port: 8023
-  context-path: /shoppingcart
+  port: 8033
+  context-path: /cart
   tomcat:
     uri-encoding: UTF-8
 
@@ -17,7 +17,7 @@ logging:
 
 eureka:
   instance:
-    hostname: micro-shoppingcart
+    hostname: micro-cart
     prefer-ip-address: true
   client:
     serviceUrl:

@@ -5,11 +5,10 @@ import com.mycat.micro.view.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
  * @date: 27/06/2017
  * @author: gaozhiwen
  */
-@Controller
+@RestController
 public class ProductController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
@@ -26,18 +25,16 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/product/all")
-    public String getProducts(HttpServletRequest request) {
+    public List<Product> getProducts() {
         List<Product> products = productService.getProducts();
         LOGGER.info("products result: {}", products);
-        request.setAttribute("products", products);
-        return "products";
+        return products;
     }
 
     @GetMapping("/product/{id}")
-    public String getProductById(@PathVariable Integer id, HttpServletRequest request) {
+    public Product getProductById(@PathVariable Integer id) {
         Product product = productService.getProductById(id);
         LOGGER.info("product for id: {}, result: {}", id, product);
-        request.setAttribute("product", product);
-        return "product";
+        return product;
     }
 }

@@ -1,4 +1,4 @@
-package com.mycat.micro.shoppingcart.model;
+package com.mycat.micro.cart.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Date;
  * @date: 27/06/2017
  * @author: gaozhiwen
  */
-public class ShoppingcartRecord implements Serializable {
+public class CartRecord implements Serializable {
     private static final long serialVersionUID = -5715176690101633737L;
     private Product product;
     private String username;
@@ -50,7 +50,7 @@ public class ShoppingcartRecord implements Serializable {
 
     @Override
     public String toString() {
-        return "ShoppingcartRecord{" +
+        return "CartRecord{" +
                 "product=" + product +
                 ", username='" + username + '\'' +
                 ", time=" + time +

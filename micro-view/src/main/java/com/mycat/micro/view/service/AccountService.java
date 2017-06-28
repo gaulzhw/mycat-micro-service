@@ -18,8 +18,9 @@ public interface AccountService {
     Account login(@RequestParam("username") String username, @RequestParam("password") String password);
 
     @Component
-    class HystrixAccountService implements AccountService{
-        @Override public Account login(String username, String password) {
+    class HystrixAccountService implements AccountService {
+        @Override
+        public Account login(String username, String password) {
             Account account = new Account();
             account.setName("mock");
             account.setPassword("mock");

@@ -6,9 +6,9 @@
         <groupId>com.mycat.micro</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>micro-shoppingcart</artifactId>
+    <artifactId>micro-cart</artifactId>
     <packaging>jar</packaging>
-    <name>micro-shoppingcart</name>
+    <name>micro-cart</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -41,7 +41,7 @@
     </dependencies>
 
     <build>
-        <finalName>micro-shoppingcart</finalName>
+        <finalName>micro-cart</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

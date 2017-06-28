@@ -1,13 +1,12 @@
 package com.mycat.micro.view.controller;
 
-import com.mycat.micro.view.constant.ViewConstant;
 import com.mycat.micro.view.model.Account;
 import com.mycat.micro.view.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date: 25/06/2017
  * @author: gaozhiwen
  */
-@Controller
+@RestController
 public class AccountController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 
@@ -33,11 +32,6 @@ public class AccountController {
         } catch (RuntimeException e) {
             LOGGER.error("[login] account service login error, perhaps eureka error", e);
         }
-        if (account == null) {
-            return "index";
-        } else {
-            request.getSession().setAttribute(ViewConstant.SESSION_KEY, account);
-            return "redirect:/product/all";
-        }
+        return "success";
     }
 }

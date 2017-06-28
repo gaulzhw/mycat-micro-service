@@ -21,7 +21,7 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
 
 server:
-  port: 8021
+  port: 8031
   context-path: /account
 
 logging:
