@@ -13,7 +13,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
  */
 public class SecurityPreFilter extends ZuulFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityPreFilter.class);
-    
+
     @Override
     public String filterType() {
         return FilterConstants.PRE_TYPE;
@@ -31,7 +31,7 @@ public class SecurityPreFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        System.out.println("security pre filter");
+        LOGGER.info("security pre filter");
         return null;
     }
 }

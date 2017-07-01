@@ -1,6 +1,7 @@
 package com.mycat.micro.gateway.controller;
 
-import com.mycat.micro.gateway.model.ResultBean;
+import com.mycat.micro.gateway.model.Result;
+import com.mycat.micro.gateway.model.ResultEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class SessionController {
     private RedisTemplate redisTemplate;
 
     @RequestMapping("/token")
-    public ResultBean checkToken(@CookieValue("JSESSIONID") String sessionId, HttpServletRequest request) {
+    public Result checkToken(@CookieValue("JSESSIONID") String sessionId, HttpServletRequest request) {
         LOGGER.info("check token, sessionId: {}", sessionId);
-        return ResultBean.SUCCESS;
+        return new Result(ResultEnum.SUCCESS);
     }
 }

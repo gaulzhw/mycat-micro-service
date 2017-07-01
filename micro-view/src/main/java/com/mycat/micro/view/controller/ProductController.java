@@ -1,5 +1,6 @@
 package com.mycat.micro.view.controller;
 
+import com.google.common.collect.Lists;
 import com.mycat.micro.view.model.Product;
 import com.mycat.micro.view.service.ProductService;
 import org.slf4j.Logger;
@@ -32,9 +33,9 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Product getProductById(@PathVariable Integer id) {
+    public List<Product> getProductById(@PathVariable Integer id) {
         Product product = productService.getProductById(id);
         LOGGER.info("product for id: {}, result: {}", id, product);
-        return product;
+        return Lists.newArrayList(product);
     }
 }

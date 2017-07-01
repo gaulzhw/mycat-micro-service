@@ -10,12 +10,20 @@
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/urlparam.js"></script>
-    <script src="js/index.js"></script>
 </head>
 
 <body>
-<h1 class="text-center">商品详情</h1>
-<table id="productTable"></table>
+<h1 class="text-center">Spring Cloud Demo</h1>
+
+<table data-toggle="table" data-url="/cart/all">
+    <thead>
+    <tr>
+        <th data-field="id">ID</th>
+        <th data-field="name">商品名称</th>
+        <th data-field="price">商品价格</th>
+        <th data-field="desc">商品描述</th>
+    </tr>
+    </thead>
+</table>
 </body>
-<script src="js/product.js"></script>
 </html>

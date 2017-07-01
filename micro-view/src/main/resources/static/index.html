@@ -3,32 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>Spring Cloud Demo</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/urlparam.js"></script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
-<h1 class="text-center">Spring Cloud Demo</h1>
-<a href="http://127.0.0.1:8021/session">session</a>
-<!--<div class="panel panel-primary container col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">-->
-<!--<form action="/login" method="post" role="form" class="panel-body">-->
-<!--<div class="row">-->
-<!--<div class="form-group">-->
-<!--<label class="control-label text-left" for="username">UserName</label>-->
-<!--<input id="username" type="text" class="form-control" name="username"-->
-<!--placeholder="input username"/>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="form-group">-->
-<!--<label class="control-label text-left" for="password">Password</label>-->
-<!--<input id="password" type="text" class="form-control" name="password"-->
-<!--placeholder="input password"/>-->
-<!--</div>-->
-<!--</div>-->
-<!--<button type="submit" class="btn btn-default">submit</button>-->
-<!--</form>-->
-<!--</div>-->
+<h1 class="text-center">商品列表</h1>
+<table data-toggle="table" data-url="/product/all">
+    <thead>
+    <tr>
+        <th data-field="id">ID</th>
+        <th data-field="name">商品名称</th>
+        <th data-field="price">商品价格</th>
+        <th data-field="desc">商品描述</th>
+        <th data-formatter="oper_detail">查看详情</th>
+        <th data-formatter="oper_cart">加入购物车</th>
+    </tr>
+    </thead>
+</table>
 </body>
 </html>

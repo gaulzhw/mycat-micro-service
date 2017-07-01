@@ -11,3 +11,11 @@ server:
 
 logging:
   config: classpath:log4j2.xml
+
+eureka:
+  instance:
+    hostname: micro-view
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka,http://eureka2:8001/eureka,http://eureka3:8001/eureka

@@ -6,18 +6,18 @@ package com.mycat.micro.gateway.model;
  * @date: 28/06/2017
  * @author: gaozhiwen
  */
-public enum ResultBean {
+public enum ResultEnum {
     SUCCESS(200, "success"), SERVER_ERROR(502, "server error"), NOT_LOGIN(503, "not login");
 
-    private Integer code;
+    private int code;
     private String desc;
 
-    ResultBean(Integer code, String desc) {
+    ResultEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 

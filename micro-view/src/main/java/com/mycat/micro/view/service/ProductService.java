@@ -1,6 +1,8 @@
 package com.mycat.micro.view.service;
 
 import com.mycat.micro.view.model.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 @FeignClient(name = "micro-gateway", fallback = ProductService.HystrixAccountService.class)
 public interface ProductService {
+    Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
+
     @GetMapping("/product/all")
     List<Product> getProducts();
 
@@ -26,11 +30,13 @@ public interface ProductService {
     class HystrixAccountService implements ProductService {
         @Override
         public List<Product> getProducts() {
+            LOGGER.warn("hystrix result for products");
             return null;
         }
 
         @Override
         public Product getProductById(Integer id) {
+            LOGGER.warn("hystrix result for product by id: {}", id);
             return null;
         }
     }
