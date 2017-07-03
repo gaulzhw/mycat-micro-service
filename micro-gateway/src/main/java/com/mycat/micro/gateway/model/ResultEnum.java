@@ -7,7 +7,7 @@ package com.mycat.micro.gateway.model;
  * @author: gaozhiwen
  */
 public enum ResultEnum {
-    SUCCESS(200, "success"), SERVER_ERROR(502, "server error"), NOT_LOGIN(503, "not login");
+    SUCCESS(200, "success"), SERVER_ERROR(502, "server error"), NOT_LOGIN(503, "not login"), PARAM_EMPTY(601, "param empty");
 
     private int code;
     private String desc;

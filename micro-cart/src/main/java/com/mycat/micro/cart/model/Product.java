@@ -1,6 +1,5 @@
 package com.mycat.micro.cart.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -9,8 +8,7 @@ import java.math.BigDecimal;
  * @date: 27/06/2017
  * @author: gaozhiwen
  */
-public class Product implements Serializable {
-    private static final long serialVersionUID = 2370587975481499997L;
+public class Product {
     private Integer id;
     private String name;
     private BigDecimal price;

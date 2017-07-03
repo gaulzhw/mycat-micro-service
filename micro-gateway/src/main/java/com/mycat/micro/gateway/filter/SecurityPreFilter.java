@@ -1,9 +1,12 @@
 package com.mycat.micro.gateway.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Desc:
@@ -32,6 +35,9 @@ public class SecurityPreFilter extends ZuulFilter {
     @Override
     public Object run() {
         LOGGER.info("security pre filter");
+        RequestContext context = RequestContext.getCurrentContext();
+        HttpSession session = context.getRequest().getSession();
+        LOGGER.info("session id: {}", session.getId());
         return null;
     }
 }

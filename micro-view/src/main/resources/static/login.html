@@ -6,12 +6,37 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-table.min.css" rel="stylesheet">
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 </head>
 
 <body>
 <h1 class="text-center">登录</h1>
+
+<form id="loginForm" class="form-horizontal" action="/account/login">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="input01">username</label>
+            <div class="controls">
+                <input name="username" type="text" placeholder="input account" class="input-xlarge">
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="input01">password</label>
+            <div class="controls">
+                <input name="password" type="password" placeholder="input password" class="input-xlarge">
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <a id="login" class="btn btn-success">submit</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
 
 </body>
 </html>

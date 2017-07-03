@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  * @date: 25/06/2017
  * @author: gaozhiwen
  */
-@FeignClient(name = "micro-gateway", fallback = ProductService.HystrixAccountService.class)
+@FeignClient(name = "micro-gateway", fallback = ProductService.HystrixProductService.class)
 public interface ProductService {
     Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
@@ -27,11 +28,11 @@ public interface ProductService {
     Product getProductById(@PathVariable("id") Integer id);
 
     @Component
-    class HystrixAccountService implements ProductService {
+    class HystrixProductService implements ProductService {
         @Override
         public List<Product> getProducts() {
             LOGGER.warn("hystrix result for products");
-            return null;
+            return Collections.EMPTY_LIST;
         }
 
         @Override

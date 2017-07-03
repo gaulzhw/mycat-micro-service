@@ -1,14 +1,16 @@
 package com.mycat.micro.view.controller;
 
-import com.mycat.micro.view.model.Account;
+import com.mycat.micro.view.model.Result;
 import com.mycat.micro.view.service.AccountService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Desc:
@@ -23,15 +25,28 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/login")
-    public String login(String username, String password, HttpServletRequest request) {
+    @PostMapping("/account/login")
+    public Result login(String username, String password, HttpServletResponse response) {
         LOGGER.info("[login] param username: {}, password: {}", username, password);
-        Account account = null;
+        Result result = null;
         try {
-            account = accountService.login(username, password);
+            String tokenId = accountService.login(username, password);
+            LOGGER.info("result from account service for login is {}", tokenId);
+            if (StringUtils.isEmpty(tokenId)) {
+                result = new Result(502, "login error");
+            } else {
+                result = new Result(200, "success");
+                LOGGER.info("token id: {}", tokenId);
+                Cookie cookie = new Cookie("JSESSIONID", tokenId);
+                cookie.setMaxAge(24 * 60 * 60);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
         } catch (RuntimeException e) {
             LOGGER.error("[login] account service login error, perhaps eureka error", e);
+            result = new Result(503, "eureka error");
         }
-        return "success";
+        LOGGER.info("account login result: {}", result);
+        return result;
     }
 }

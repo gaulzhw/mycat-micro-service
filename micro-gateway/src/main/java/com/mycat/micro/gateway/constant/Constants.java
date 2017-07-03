@@ -7,5 +7,5 @@ package com.mycat.micro.gateway.constant;
  * @author: gaozhiwen
  */
 public class Constants {
-    public static final String SESSION_KEY = "loginAccount";
+    public static final String REDIS_KEY_ACCOUNT = "account";
 }

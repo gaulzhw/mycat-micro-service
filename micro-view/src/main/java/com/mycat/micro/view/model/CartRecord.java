@@ -1,4 +1,4 @@
-package com.mycat.micro.cart.model;
+package com.mycat.micro.view.model;
 
 import java.util.Date;
 
