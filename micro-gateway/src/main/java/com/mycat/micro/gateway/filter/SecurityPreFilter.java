@@ -1,5 +1,8 @@
 package com.mycat.micro.gateway.filter;
 
+import com.mycat.micro.gateway.constant.Constants;
+import com.mycat.micro.gateway.model.Account;
+import com.mycat.micro.gateway.util.JacksonUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
@@ -29,15 +32,24 @@ public class SecurityPreFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        String uri = getContext().getRequest().getRequestURI();
+        return uri.startsWith("/cart/");
     }
 
     @Override
     public Object run() {
         LOGGER.info("security pre filter");
-        RequestContext context = RequestContext.getCurrentContext();
-        HttpSession session = context.getRequest().getSession();
+        HttpSession session = getContext().getRequest().getSession();
+        String accountStr = (String) session.getAttribute(Constants.SESSION_KEY_ACCOUNT);
+        Account account = JacksonUtil.decode(accountStr, Account.class);
+        if (account != null) {
+            getContext().addZuulRequestHeader("accountName", account.getName());
+        }
         LOGGER.info("session id: {}", session.getId());
         return null;
+    }
+
+    private RequestContext getContext() {
+        return RequestContext.getCurrentContext();
     }
 }

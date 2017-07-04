@@ -1,13 +1,12 @@
 package com.mycat.micro.cart.controller;
 
 import com.mycat.micro.cart.model.CartRecord;
-import com.mycat.micro.cart.model.Product;
 import com.mycat.micro.cart.service.CartService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +25,16 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/{username}")
-    public List<CartRecord> getProductsByUsername(@PathVariable String username) {
-        return cartService.getProductsByUsername(username);
+    @GetMapping("/records")
+    public List<CartRecord> getProductsByUsername(HttpServletRequest request) {
+        String name = request.getHeader("accountName");
+        return cartService.getProductsByUsername(name);
     }
 
-    @PostMapping("/add")
-    public Integer addProductToCart(String username, Product product, Integer count) {
-        return cartService.addProductToCart(username, product, count);
+    @PostMapping("/records")
+    public Integer addProductToCart(CartRecord cartRecord, HttpServletRequest request) {
+        String name = request.getHeader("accountName");
+        cartRecord.setUsername(name);
+        return cartService.addProductToCart(cartRecord);
     }
 }

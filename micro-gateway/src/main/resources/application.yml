@@ -39,6 +39,10 @@ zuul:
       path: /product/**
       serviceId: micro-product
       stripPrefix: false
+    cart:
+      path: /cart/**
+      serviceId: micro-cart
+      stripPrefix: false
 
 hystrix:
   command:

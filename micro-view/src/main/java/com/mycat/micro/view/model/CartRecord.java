@@ -1,5 +1,6 @@
 package com.mycat.micro.view.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,17 +10,35 @@ import java.util.Date;
  * @author: gaozhiwen
  */
 public class CartRecord {
-    private Product product;
+    private Integer productId;
+    private String productName;
+    private BigDecimal productPrice;
     private String username;
     private Date time;
     private Integer count;
 
-    public Product getProduct() {
-        return product;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public BigDecimal getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getUsername() {
@@ -49,7 +68,9 @@ public class CartRecord {
     @Override
     public String toString() {
         return "CartRecord{" +
-                "product=" + product +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
                 ", username='" + username + '\'' +
                 ", time=" + time +
                 ", count=" + count +
