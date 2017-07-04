@@ -31,13 +31,11 @@ public class AccountController {
         Result result = null;
         try {
             String tokenId = accountService.login(username, password);
-            LOGGER.info("result from account service for login is {}", tokenId);
             if (StringUtils.isEmpty(tokenId)) {
                 result = new Result(502, "login error");
             } else {
                 result = new Result(200, "success");
-                LOGGER.info("token id: {}", tokenId);
-                Cookie cookie = new Cookie("JSESSIONID", tokenId);
+                Cookie cookie = new Cookie("SESSION", tokenId);
                 cookie.setMaxAge(24 * 60 * 60);
                 cookie.setPath("/");
                 response.addCookie(cookie);
@@ -46,7 +44,6 @@ public class AccountController {
             LOGGER.error("[login] account service login error, perhaps eureka error", e);
             result = new Result(503, "eureka error");
         }
-        LOGGER.info("account login result: {}", result);
         return result;
     }
 }

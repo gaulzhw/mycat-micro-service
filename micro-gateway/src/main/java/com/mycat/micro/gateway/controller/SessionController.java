@@ -6,10 +6,10 @@ import com.mycat.micro.gateway.model.ResultEnum;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Desc:
@@ -21,17 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SessionController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SessionController.class);
 
-    @Autowired
-    private RedisTemplate redisTemplate;
-
     @RequestMapping("/session/token")
-    public Result checkToken(String sessionId) {
+    public Result checkToken(HttpServletRequest request) {
         Result result = null;
-        LOGGER.info("gateway session id for jsessionid: {}", sessionId);
-        String sessionToken = (String) redisTemplate.opsForHash().get(sessionId, Constants.REDIS_KEY_ACCOUNT);
-//        HttpSession session = request.getSession();
-//        LOGGER.info("session id: {}", session.getId());
-//        String sessionToken = (String) session.getAttribute("loginAccount");
+        String sessionToken = (String) request.getSession().getAttribute(Constants.SESSION_KEY_ACCOUNT);
+
         if (StringUtils.isEmpty(sessionToken)) {
             result = new Result(ResultEnum.NOT_LOGIN);
         } else {

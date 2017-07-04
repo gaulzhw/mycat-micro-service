@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Desc:
@@ -19,7 +19,7 @@ public interface SessionService {
     Logger LOGGER = LoggerFactory.getLogger(SessionService.class);
 
     @RequestMapping(value = "/session/token")
-    Result tokenCheck(@RequestParam("sessionId") String sessionId);
+    Result tokenCheck(@RequestHeader("Cookie") String sessionId);
 
     @Component
     class HystrixSessionService implements SessionService {

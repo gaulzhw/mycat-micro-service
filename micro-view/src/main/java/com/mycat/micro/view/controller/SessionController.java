@@ -23,10 +23,8 @@ public class SessionController {
     private SessionService sessionService;
 
     @GetMapping("/session/token")
-    public Result tokenCheck(@CookieValue("JSESSIONID") String sessionId) {
-        LOGGER.info("session to check token");
-        Result result = sessionService.tokenCheck(sessionId);
-        LOGGER.info("session check result: {}", result);
+    public Result tokenCheck(@CookieValue("SESSION") String sessionId) {
+        Result result = sessionService.tokenCheck("SESSION=" + sessionId);
         return result;
     }
 }
