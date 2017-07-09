@@ -1,6 +1,8 @@
 package com.mycat.micro.view.controller;
 
+import com.mycat.micro.view.constant.Constants;
 import com.mycat.micro.view.model.Result;
+import com.mycat.micro.view.model.ResultEnum;
 import com.mycat.micro.view.service.AccountService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -32,17 +34,17 @@ public class AccountController {
         try {
             String tokenId = accountService.login(username, password);
             if (StringUtils.isEmpty(tokenId)) {
-                result = new Result(502, "login error");
+                result = new Result(ResultEnum.ERROR);
             } else {
-                result = new Result(200, "success");
-                Cookie cookie = new Cookie("SESSION", tokenId);
+                result = new Result(ResultEnum.SUCCESS);
+                Cookie cookie = new Cookie(Constants.SESSION, tokenId);
                 cookie.setMaxAge(24 * 60 * 60);
                 cookie.setPath("/");
                 response.addCookie(cookie);
             }
         } catch (RuntimeException e) {
             LOGGER.error("[login] account service login error, perhaps eureka error", e);
-            result = new Result(503, "eureka error");
+            result = new Result(ResultEnum.ERROR);
         }
         return result;
     }

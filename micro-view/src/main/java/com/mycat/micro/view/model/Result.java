@@ -1,30 +1,27 @@
 package com.mycat.micro.view.model;
 
-import java.io.Serializable;
-
 /**
  * Desc:
  *
  * @date: 29/06/2017
  * @author: gaozhiwen
  */
-public class Result implements Serializable {
-    private static final long serialVersionUID = 8625790524979231103L;
+public class Result<T> {
     private int code;
     private String desc;
-    private Object data;
+    private T data;
 
     public Result() {
     }
 
-    public Result(int code, String desc) {
-        this.code = code;
-        this.desc = desc;
+    public Result(ResultEnum resultEnum) {
+        this.code = resultEnum.getCode();
+        this.desc = resultEnum.getDesc();
     }
 
-    public Result(int code, String desc, Object data) {
-        this.code = code;
-        this.desc = desc;
+    public Result(ResultEnum resultEnum, T data) {
+        this.code = resultEnum.getCode();
+        this.desc = resultEnum.getDesc();
         this.data = data;
     }
 
@@ -44,20 +41,11 @@ public class Result implements Serializable {
         this.desc = desc;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", desc='" + desc + '\'' +
-                ", data=" + data +
-                '}';
     }
 }

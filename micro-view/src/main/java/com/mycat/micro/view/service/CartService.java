@@ -1,6 +1,8 @@
 package com.mycat.micro.view.service;
 
 import com.mycat.micro.view.model.CartRecord;
+import com.mycat.micro.view.model.Result;
+import com.mycat.micro.view.model.ResultEnum;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ import java.util.List;
 @FeignClient(name = "micro-gateway", fallback = CartService.HystrixCartService.class)
 public interface CartService {
     @PostMapping("/cart/records")
-    Integer add(@RequestBody CartRecord cartRecord);
+    Result add(@RequestBody CartRecord cartRecord, @RequestHeader("Cookie") String sessionId);
 
     @GetMapping("/cart/records")
     List<CartRecord> getCartRecords(@RequestHeader("Cookie") String sessionId);
@@ -28,8 +30,8 @@ public interface CartService {
     @Component
     class HystrixCartService implements CartService {
         @Override
-        public Integer add(CartRecord cartRecord) {
-            return 0;
+        public Result add(CartRecord cartRecord, String sessionId) {
+            return new Result(ResultEnum.ERROR);
         }
 
         public List<CartRecord> getCartRecords(String sessionId) {

@@ -25,14 +25,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/product/all")
+    @GetMapping("/products")
     public List<Product> getProducts() {
         List<Product> products = productService.getProducts();
         LOGGER.info("products result: {}", products);
         return products;
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public List<Product> getProductById(@PathVariable Integer id) {
         Product product = productService.getProductById(id);
         LOGGER.info("product for id: {}, result: {}", id, product);

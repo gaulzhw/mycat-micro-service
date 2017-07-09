@@ -1,7 +1,7 @@
-var id = getQueryString(window.location.href, 'id');
-var dataUrl = "/product/" + id;
+var id = getQueryString(curPageUrl, 'id');
+var dataUrl = "/products/" + id;
 
-$('#productTable').bootstrapTable({
+$('.product_table').bootstrapTable({
     url: dataUrl,
     columns: [{
         field: 'id',
@@ -16,7 +16,46 @@ $('#productTable').bootstrapTable({
         field: 'desc',
         title: '商品描述'
     }, {
-        formatter: 'oper_cart',
+        formatter: "cart_formatter",
         title: '加入购物车'
     }]
-})
+});
+
+function cart_formatter(value, row) {
+    var json = {
+        productId: row.id,
+        productName: row.name,
+        productPrice: row.price,
+        count: 1
+    };
+    return "<a href='#' onclick='addToCart(" + JSON.stringify(json) + ")'>加入购物车</a>";
+}
+
+function addToCart(row) {
+    var reqUrl = "/cart/records";
+    $.ajax({
+        type: 'POST',
+        url: reqUrl,
+        data: JSON.stringify(row),
+        dataType: 'json',
+        contentType: "application/json ; charset=utf-8",
+        success: function (data) {
+            var code = data.code;
+            if (code != undefined) {
+                if (code == 200) {
+                    navi2page("/cart.html");
+                } else if (code == 503) {
+                    navi2page("/login.html");
+                } else {
+                    alert("add to cart error");
+                }
+                return;
+            }
+            var directUrl = data.redirect;
+            if (directUrl != undefined) {
+                navi2page(directUrl);
+                return;
+            }
+        }
+    });
+};

@@ -1,5 +1,6 @@
 package com.mycat.micro.view.controller;
 
+import com.mycat.micro.view.constant.Constants;
 import com.mycat.micro.view.model.Result;
 import com.mycat.micro.view.service.SessionService;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ public class SessionController {
     private SessionService sessionService;
 
     @GetMapping("/session/token")
-    public Result tokenCheck(@CookieValue("SESSION") String sessionId) {
+    public Result tokenCheck(@CookieValue(Constants.SESSION) String sessionId) {
         Result result = sessionService.tokenCheck("SESSION=" + sessionId);
         return result;
     }

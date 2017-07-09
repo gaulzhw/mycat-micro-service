@@ -1,4 +1,4 @@
-package com.mycat.micro.gateway.model;
+package com.mycat.micro.cart.model;
 
 /**
  * Desc:

@@ -1,14 +1,15 @@
 package com.mycat.micro.cart.service;
 
-import com.google.common.collect.Lists;
 import com.mycat.micro.cart.model.CartRecord;
+import com.mycat.micro.cart.model.Result;
+import com.mycat.micro.cart.model.ResultEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,17 +27,22 @@ public class CartService {
     private RedisTemplate redisTemplate;
 
     public List<CartRecord> getProductsByUsername(String username) {
-        List<CartRecord> records = Lists.newArrayList();
-        if (!CollectionUtils.isEmpty(records)) {
-            redisTemplate.opsForList().leftPushAll(REDIS_KEY_PRE_CART + username, records);
+        try {
+            List<CartRecord> records = redisTemplate.opsForList().range(REDIS_KEY_PRE_CART + username, 0, -1);
             LOGGER.info("get products by username: {}, result: {}", username, records);
+            return records;
+        } catch (Exception e) {
+            return Collections.emptyList();
         }
-        return records;
     }
 
-    public Integer addProductToCart(CartRecord cartRecord) {
-        String recordStr = new String(redisTemplate.getHashValueSerializer().serialize(cartRecord));
-        LOGGER.info("add product to cart, cartRecord: {}", recordStr);
-        return redisTemplate.opsForList().rightPush(REDIS_KEY_PRE_CART + cartRecord.getUsername(), recordStr).intValue();
+    public Result addProductToCart(CartRecord cartRecord) {
+        try {
+            LOGGER.info("add product to cart, cartRecord: {}", cartRecord);
+            redisTemplate.opsForList().leftPush(REDIS_KEY_PRE_CART + cartRecord.getUsername(), cartRecord).intValue();
+            return new Result(ResultEnum.SUCCESS);
+        } catch (Exception e) {
+            return new Result(ResultEnum.ERROR);
+        }
     }
 }

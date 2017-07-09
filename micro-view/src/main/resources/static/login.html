@@ -3,40 +3,32 @@
 <head>
     <meta charset="utf-8">
     <title>Spring Cloud Demo</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/form-elements.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
     <script src="js/login.js"></script>
 </head>
 
 <body>
-<h1 class="text-center">登录</h1>
-
-<form id="loginForm" class="form-horizontal" action="/account/login">
-    <fieldset>
-        <div class="control-group">
-            <label class="control-label" for="input01">username</label>
-            <div class="controls">
-                <input name="username" type="text" placeholder="input account" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
+<div class="form-bottom">
+    <form role="form" action="/account/login" method="post" class="login-form">
+        <div class="form-group">
+            <label class="sr-only" for="form-username">Username</label>
+            <input type="text" name="username" placeholder="Username..."
+                   class="form-username form-control" id="form-username">
         </div>
-        <div class="control-group">
-            <label class="control-label" for="input01">password</label>
-            <div class="controls">
-                <input name="password" type="password" placeholder="input password" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
+        <div class="form-group">
+            <label class="sr-only" for="form-password">Password</label>
+            <input type="password" name="password" placeholder="Password..."
+                   class="form-password form-control" id="form-password">
         </div>
-        <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <a id="login" class="btn btn-success">submit</a>
-            </div>
-        </div>
-    </fieldset>
-</form>
-
+        <input type="button" class="btn" value="Sign in!"/>
+    </form>
+</div>
 </body>
 </html>

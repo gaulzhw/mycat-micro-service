@@ -4,12 +4,10 @@ var prePageUrl;
 function navi2page(newpage) {
     prePageUrl = curPageUrl;
     curPageUrl = newpage;
-    //$("#bodymain").load(newpage);
-    location.assign(newpage);
+    $("#bodymain").load(newpage);
 }
 
 function back2page() {
     curPageUrl = prePageUrl;
-    //$("#bodymain").load(curPageUrl);
-    location.assign(newpage);
+    $("#bodymain").load(curPageUrl);
 }

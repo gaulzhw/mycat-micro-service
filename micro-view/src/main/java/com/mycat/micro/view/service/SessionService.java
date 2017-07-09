@@ -1,12 +1,13 @@
 package com.mycat.micro.view.service;
 
 import com.mycat.micro.view.model.Result;
+import com.mycat.micro.view.model.ResultEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Desc:
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface SessionService {
     Logger LOGGER = LoggerFactory.getLogger(SessionService.class);
 
-    @RequestMapping(value = "/session/token")
+    @GetMapping(value = "/session/token")
     Result tokenCheck(@RequestHeader("Cookie") String sessionId);
 
     @Component
@@ -26,7 +27,7 @@ public interface SessionService {
         @Override
         public Result tokenCheck(String sessionId) {
             LOGGER.warn("token check error");
-            return new Result(402, "server error");
+            return new Result(ResultEnum.ERROR);
         }
     }
 }

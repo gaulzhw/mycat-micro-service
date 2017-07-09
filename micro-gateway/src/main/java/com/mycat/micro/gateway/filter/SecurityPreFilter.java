@@ -2,6 +2,8 @@ package com.mycat.micro.gateway.filter;
 
 import com.mycat.micro.gateway.constant.Constants;
 import com.mycat.micro.gateway.model.Account;
+import com.mycat.micro.gateway.model.Result;
+import com.mycat.micro.gateway.model.ResultEnum;
 import com.mycat.micro.gateway.util.JacksonUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -42,8 +44,14 @@ public class SecurityPreFilter extends ZuulFilter {
         HttpSession session = getContext().getRequest().getSession();
         String accountStr = (String) session.getAttribute(Constants.SESSION_KEY_ACCOUNT);
         Account account = JacksonUtil.decode(accountStr, Account.class);
+        LOGGER.info("account: {}", account);
         if (account != null) {
             getContext().addZuulRequestHeader("accountName", account.getName());
+        } else {
+            LOGGER.warn("account no login, send response directly");
+            getContext().setSendZuulResponse(true);
+            getContext().setResponseStatusCode(200);
+            getContext().setResponseBody(JacksonUtil.encode(new Result(ResultEnum.NOT_LOGIN)));
         }
         LOGGER.info("session id: {}", session.getId());
         return null;

@@ -59,8 +59,8 @@ public class RedisConfig extends CachingConfigurerSupport {
 //        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 //        jackson2JsonRedisSerializer.setObjectMapper(om);
 
-        template.setKeySerializer(redisSerializer);
-        template.setValueSerializer(redisSerializer);
+        template.setKeySerializer(jackson2JsonRedisSerializer);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setHashKeySerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
