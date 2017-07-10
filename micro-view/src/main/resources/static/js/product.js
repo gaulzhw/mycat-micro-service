@@ -1,27 +1,9 @@
-var id = getQueryString(curPageUrl, 'id');
-var dataUrl = "/products/" + id;
+function oper_detail(value, row) {
+    var href = "/detail.html?id=" + row.id;
+    return "<a href='#' onclick=navi2page('" + href + "')>商品详情</a>";
+}
 
-$('.product_table').bootstrapTable({
-    url: dataUrl,
-    columns: [{
-        field: 'id',
-        title: 'ID'
-    }, {
-        field: 'name',
-        title: '商品名称'
-    }, {
-        field: 'price',
-        title: '商品价格'
-    }, {
-        field: 'desc',
-        title: '商品描述'
-    }, {
-        formatter: "cart_formatter",
-        title: '加入购物车'
-    }]
-});
-
-function cart_formatter(value, row) {
+function oper_cart(value, row) {
     var json = {
         productId: row.id,
         productName: row.name,

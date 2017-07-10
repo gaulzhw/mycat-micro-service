@@ -19,7 +19,7 @@ public class ViewStarter extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SecurityInterceptor())
-                .excludePathPatterns("/", "/login.html", "/account/login", "/session/**", "/product.html", "/products/**")
+                .excludePathPatterns("/", "/login.html", "/account/login", "/session/**", "/detail.html", "/products/**")
                 .addPathPatterns("/**");
         super.addInterceptors(registry);
     }

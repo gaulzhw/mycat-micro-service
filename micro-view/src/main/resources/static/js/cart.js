@@ -8,7 +8,7 @@ $('.cart_table').bootstrapTable({
         field: 'productName',
         title: '商品名称'
     }, {
-        field: 'productName',
+        field: 'productPrice',
         title: '商品价格'
     }, {
         formatter: 'time_formatter',
@@ -16,6 +16,9 @@ $('.cart_table').bootstrapTable({
     }, {
         field: "count",
         title: '数量'
+    }, {
+        formatter: "amount_formatter",
+        title: '总额'
     }],
     responseHandler: handler
 });
@@ -41,4 +44,8 @@ function time_formatter(value, row) {
     var minute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
     var second = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
     return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+}
+
+function amount_formatter(value, row) {
+    return row.productPrice * row.count;
 }
