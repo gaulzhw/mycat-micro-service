@@ -7,6 +7,10 @@ spring:
     host: localhost
     port: 6379
     password:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
 server:
   port: 8021
@@ -51,3 +55,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
+
+ribbon:
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
