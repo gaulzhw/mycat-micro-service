@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author: gaozhiwen
  */
 @FeignClient(name = "micro-gateway", fallback = AccountService.HystrixAccountService.class)
-public interface AccountService {
-    @GetMapping("/account/login")
-    String login(@RequestParam("username") String username, @RequestParam("password") String password);
+public interface AccountService
+{
+	@GetMapping("/account/login")
+	String login(@RequestParam("username") String username, @RequestParam("password") String password);
 
-    @Component
-    class HystrixAccountService implements AccountService {
-        @Override
-        public String login(String username, String password) {
-            return null;
-        }
-    }
+	@Component
+	class HystrixAccountService implements AccountService
+	{
+		@Override
+		public String login(String username, String password)
+		{
+			//触发熔断，做响应处理，可以返回默认值
+			return null;
+		}
+	}
 }
